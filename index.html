@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>🎥 Movie Watchlist</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <script href="script.js"></script>
+        <form action="" id="movieForm">
+            <input type="text" id="title" />
+            <select name="genre" id="genre">
+                <option value="">Choose a genre</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Crime">Crime</option>
+                <option value="Drama">Drama</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Horror">Horror</option>
+                <option value="Musical">Musical</option>
+                <option value="Romance">Romance</option>
+                <option value="Science Fiction">Science Fiction</option>
+                <option value="Western">Western</option>
+            </select>
+            <input type="submit" value="Add Movie" />
+        </form>
+        <p id="validation"></p>
+        <ul id="movieList"></ul>
+        <p id="emptyMessage"></p>
+    </body>
+</html>
