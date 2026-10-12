@@ -6,7 +6,9 @@ const movieList = document.getElementById("movieList");
 const emptyMessage = document.getElementById("emptyMessage");
 
 const watchlist = {
-    movies: [],
+    movies: [
+        { title: "The Princess Bride", genre: "Adventure", watched: false },
+    ],
     toggleWatched(index) {
         // TODO (Step 4)
     },
@@ -15,16 +17,36 @@ const watchlist = {
     },
 };
 
-function saveMovies() {
-    // TODO (Step 6)
-}
+function saveMovies() {}
 
 function loadMovies() {
     // TODO (Step 6)
 }
 
 function renderMovies() {
-    // TODO (Step 3)
+    movieList.replaceChildren();
+
+    watchlist.movies.forEach((movie, index) => {
+        const card = document.createElement("li");
+        const title = document.createElement("h3");
+        title.textContent = movie.title;
+
+        const details = document.createElement("p");
+        details.textContent = movie.finished ? "Finished" : "Not finished";
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = movie.finished
+            ? "Mark Unfinished"
+            : "Mark Finished";
+        button.addEventListener("click", () => {
+            readingList.markFinished(index);
+            renderBooks();
+        });
+
+        card.append(title, details, button);
+        movieList.append(card);
+    });
 }
 
 form.addEventListener("submit", (event) => {
