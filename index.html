@@ -7,9 +7,12 @@
     </head>
 
     <body>
+        <h1>🎥 Movie Watchlist</h1>
         <script src="script.js" defer></script>
         <form action="" id="movieForm">
-            <input type="text" id="title" />
+            <label>Title</label><br />
+            <input type="text" id="title" /><br />
+            <label>Genre</label><br />
             <select name="genre" id="genre">
                 <option value="">Choose a genre</option>
                 <option value="Action">Action</option>
@@ -21,11 +24,12 @@
                 <option value="Musical">Musical</option>
                 <option value="Romance">Romance</option>
                 <option value="Science Fiction">Science Fiction</option>
-                <option value="Western">Western</option>
-            </select>
+                <option value="Western">Western</option></select
+            ><br />
             <input type="submit" value="Add Movie" />
         </form>
         <p id="validation"></p>
+        <hr />
         <ul id="movieList"></ul>
         <p id="emptyMessage"></p>
     </body>

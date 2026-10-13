@@ -65,6 +65,13 @@ function renderMovies() {
         card.append(title, genre, details, watchedButton, removeButton);
         movieList.append(card);
     });
+
+    if (watchlist.movies.length === 0) {
+        emptyMessage.textContent =
+            "Your watchlist is empty. Add a movie to get started.";
+    } else {
+        emptyMessage.textContent = "";
+    }
 }
 
 form.addEventListener("submit", (event) => {
@@ -75,12 +82,12 @@ form.addEventListener("submit", (event) => {
 
     if (titleInput.value === "") {
         validate = false;
-        message.innerHTML += `Please enter a movie name!<br>`;
+        message.innerHTML += `Enter a movie title.<br>`;
     }
 
     if (genreSelect.value === "") {
         validate = false;
-        message.innerHTML += `Please select a movie genre!`;
+        message.innerHTML += `Choose a genre.`;
     }
 
     if (validate) {
