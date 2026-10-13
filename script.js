@@ -6,10 +6,7 @@ const movieList = document.getElementById("movieList");
 const emptyMessage = document.getElementById("emptyMessage");
 
 const watchlist = {
-    movies: [
-        { title: "The Princess Bride", genre: "Adventure", watched: false },
-        { title: "Another Movie", genre: "Something else", watched: false },
-    ],
+    movies: [],
     toggleWatched(index) {
         this.movies[index].watched = !this.movies[index].watched;
         saveMovies();
@@ -23,11 +20,13 @@ const watchlist = {
 };
 
 function saveMovies() {
-    // TODO (Step 6)
+    localStorage.setItem("movies", JSON.stringify(watchlist.movies));
 }
 
 function loadMovies() {
-    // TODO (Step 6)
+    const savedMovies = JSON.parse(localStorage.getItem("movies") || "[]");
+
+    watchlist.movies = savedMovies;
 }
 
 function renderMovies() {
