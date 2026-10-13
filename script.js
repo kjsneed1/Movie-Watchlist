@@ -69,7 +69,36 @@ function renderMovies() {
 }
 
 form.addEventListener("submit", (event) => {
-    // TODO (Step 5)
+    event.preventDefault();
+
+    let validate = true;
+    message.textContent = "";
+
+    if (titleInput.value === "") {
+        validate = false;
+        message.innerHTML += `Please enter a movie name!<br>`;
+    }
+
+    if (genreSelect.value === "") {
+        validate = false;
+        message.innerHTML += `Please select a movie genre!`;
+    }
+
+    if (validate) {
+        const movieObj = {
+            title: titleInput.value,
+            genre: genreSelect.value,
+            watched: false,
+        };
+
+        watchlist.movies.push(movieObj);
+
+        titleInput.value = "";
+        genreSelect.value = "";
+
+        saveMovies();
+        renderMovies();
+    }
 });
 
 loadMovies();
