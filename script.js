@@ -8,16 +8,23 @@ const emptyMessage = document.getElementById("emptyMessage");
 const watchlist = {
     movies: [
         { title: "The Princess Bride", genre: "Adventure", watched: false },
+        { title: "Another Movie", genre: "Something else", watched: false },
     ],
     toggleWatched(index) {
-        // TODO (Step 4)
+        this.movies[index].watched = !this.movies[index].watched;
+        saveMovies();
+        renderMovies();
     },
     removeMovie(index) {
-        // TODO (Step 4)
+        this.movies.splice(index, 1);
+        saveMovies();
+        renderMovies();
     },
 };
 
-function saveMovies() {}
+function saveMovies() {
+    // TODO (Step 6)
+}
 
 function loadMovies() {
     // TODO (Step 6)
@@ -29,22 +36,34 @@ function renderMovies() {
     watchlist.movies.forEach((movie, index) => {
         const card = document.createElement("li");
         const title = document.createElement("h3");
+        const genre = document.createElement("h4");
+
         title.textContent = movie.title;
 
-        const details = document.createElement("p");
-        details.textContent = movie.finished ? "Finished" : "Not finished";
+        genre.textContent = movie.genre;
 
-        const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = movie.finished
-            ? "Mark Unfinished"
-            : "Mark Finished";
-        button.addEventListener("click", () => {
-            readingList.markFinished(index);
-            renderBooks();
+        const details = document.createElement("p");
+        details.textContent = movie.watched ? "Watched" : "Not watched";
+
+        const watchedButton = document.createElement("button");
+        watchedButton.type = "button";
+        watchedButton.textContent = movie.watched
+            ? "Mark Unwatched"
+            : "Mark Watched";
+        watchedButton.addEventListener("click", () => {
+            watchlist.toggleWatched(index);
+            renderMovies();
         });
 
-        card.append(title, details, button);
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "Remove";
+        removeButton.addEventListener("click", () => {
+            watchlist.removeMovie(index);
+            renderMovies();
+        });
+
+        card.append(title, genre, details, watchedButton, removeButton);
         movieList.append(card);
     });
 }
